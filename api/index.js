@@ -5,8 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const TransactionModels = require('./models/Transaction.js');
 
-
-
 const app = express();
 
 app.use(express.json());
