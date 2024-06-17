@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const TransactionModels = require('./models/Transaction.js');
+const path = require("path");
 
 const app = express();
 
@@ -28,6 +29,12 @@ app.get('/api/test', (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.use(express.static(path.resolve(__dirname, "frontend", "dist")));
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+});
+
 
 app.post('/api/transaction', async (req, res) => {
   try {
